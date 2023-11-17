@@ -1,1 +1,1 @@
-import discord bot token
+discord bot token here
