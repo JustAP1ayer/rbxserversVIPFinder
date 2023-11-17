@@ -1,1 +1,1 @@
-"import discord bot token"
+import discord bot token
