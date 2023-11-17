@@ -12,7 +12,7 @@ async def on_ready():
     print(f"Logged in as {bot.user}")
 
 @bot.command()
-@commands.cooldown(1, num(open("delay.txt", "r").read().strip()), commands.BucketType.user)
+@commands.cooldown(1, int(open("delay.txt", "r").read().strip()), commands.BucketType.user)
 
 async def game2vips(ctx, game_id1: str):
     try:
@@ -49,18 +49,18 @@ async def game2vips(ctx, game_id1: str):
                                         vip_link = vip_link[:-1]
                                     vip_links.append(vip_link) 
                             else:
-                                ctx.send('No Vips Found')
+                                await ctx.send('No Vips Found')
                         else:
-                            ctx.send('No Vips Found')
+                            await ctx.send('No Vips Found')
             if vip_links:
                 embed = discord.Embed(title=f"Vip Servers Found (rbxservers.xyz web scraping)", description='```' + '\n'.join(vip_links) + '```' + '\n', color=7419530)
                 embed.timestamp = datetime.datetime.utcnow()
                 embed.set_footer(text='nyaa~w redblue was here ^~^',icon_url="https://i.imgur.com/hWCLhIZ.png")
                 await ctx.send(embed=embed)
             else:
-                ctx.send('No Vips Found')
+                await ctx.send('No Vips Found')
         else:
-            ctx.send('Failed to fetch content for the specified game ID')
+            await ctx.send('Failed to fetch content for the specified game ID')
     except Exception as e:
         print(e)
         await ctx.send("An error occurred while getting VIPs.")
