@@ -3,16 +3,16 @@ from discord.ext import commands
 import requests
 import datetime
 import re
-
+# copy pasted imports from my discord bot got lazy
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix=[open("command.txt", "r").read().strip()], intents=intents)
+bot = commands.Bot(command_prefix=str(open("command.txt", "r").read().strip()), intents=intents)
 
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user}")
 
 @bot.command()
-@commands.cooldown(1, open("delay.txt", "r").read().strip(), commands.BucketType.user)
+@commands.cooldown(1, num(open("delay.txt", "r").read().strip()), commands.BucketType.user)
 
 async def game2vips(ctx, game_id1: str):
     try:
@@ -73,4 +73,4 @@ async def game2vips_error(ctx, error):
         em.set_footer(text='nyaa~w redblue was here ^~^',icon_url="https://i.imgur.com/hWCLhIZ.png")
         await ctx.send(embed=em)
 
-bot.run(open("token.txt", "r").read().strip())
+bot.run(str(open("token.txt", "r").read().strip()))
